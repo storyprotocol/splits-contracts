@@ -1,6 +1,7 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { DeployFunction } from 'hardhat-deploy/types'
 import { waffle } from 'hardhat'
+import hre from 'hardhat'
 import fs from 'fs'
 
 // copied from useDapp
@@ -18,6 +19,7 @@ enum ChainId {
   Harmony = 1666600000,
   Localhost = 1337,
   Hardhat = 31337,
+  Sepolia = 11155111,
 }
 
 const CHAIN_NAMES = {
@@ -34,9 +36,11 @@ const CHAIN_NAMES = {
   [ChainId.Harmony]: 'Harmony',
   [ChainId.Localhost]: 'Localhost',
   [ChainId.Hardhat]: 'Hardhat',
+  [ChainId.Sepolia]: 'Sepolia',
 }
 
-const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const func = async function () {
+  // DeployFunction
   const { deployments, getNamedAccounts } = hre
   const { deploy, read } = deployments
   const { deployer } = await getNamedAccounts()
@@ -67,5 +71,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   )
 }
 
-export default func
-func.tags = ['SplitMain']
+// export default func
+// func.tags = ['SplitMain']
+
+func().then(() => process.exit(0))

@@ -23,11 +23,11 @@ import * as dotenv from 'dotenv'
 dotenv.config({ path: '.env.local' })
 
 const config: HardhatUserConfig = {
-  // solidity: '0.8.4',
+  // solidity: '0.8.23',
   solidity: {
     compilers: [
       {
-        version: '0.8.4',
+        version: '0.8.23',
         settings: {
           optimizer: {
             enabled: true,
@@ -55,6 +55,12 @@ const config: HardhatUserConfig = {
     deployer: 0,
   },
   networks: {
+    sepolia: {
+      url: 'https://1rpc.io/sepolia',
+      accounts: process.env.DEPLOYER_PRIVATE_KEY
+        ? [`0x${process.env.DEPLOYER_PRIVATE_KEY}`]
+        : 'remote',
+    },
     mainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
       accounts: process.env.DEPLOYER_PRIVATE_KEY

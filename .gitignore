@@ -10,6 +10,7 @@ coverage.json
 # misc
 .DS_Store
 *.pem
+pnpm-lock.yaml
 
 # debug
 npm-debug.log*

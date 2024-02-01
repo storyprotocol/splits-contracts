@@ -40,3 +40,11 @@ yarn hardhat seedAccount --network localhost {{YOUR_WALLET_ADDRESS}}
 // Create split with random recipients
 yarn hardhat createSplit --network localhost --size {{SIZE}}
 ```
+
+## Verification
+```bash
+ETHERSCAN_API_KEY=
+SPLIT_MAIN_WALLET=0x57CBFA83f000a38C5b5881743E298819c503A559
+
+forge verify-contract --chain sepolia --etherscan-api-key ${ETHERSCAN_API_KEY} --watch --compiler-version 0.8.23 ${SPLIT_MAIN_WALLET} contracts/SplitMain.sol:SplitMain
+```
